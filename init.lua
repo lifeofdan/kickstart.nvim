@@ -175,6 +175,13 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- lifeofdan keybinds
+vim.cmd [[set cc=80]]
+vim.cmd [[set nu rnu]]
+vim.cmd [[
+  au InsertEnter * set nornu
+  au InsertLeave * set nu rnu
+]]
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -185,6 +192,11 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
+vim.keymap.set('n', '<Leader>c', ':bd<CR>', { desc = 'Delete buffer' })
+vim.keymap.set('n', '<Leader>v', ':vsplit<CR>', { desc = 'Split window vertically' })
+vim.keymap.set('n', '<C->>', ':vert res +1<CR>', { desc = 'Increase size' })
+vim.keymap.set('n', '<C-<>', ':vert res -1<CR>', { desc = 'Decrease size' })
+vim.keymap.set('n', '<C-=>', ':horizontal wincmd =<CR>', { desc = 'Equal resize' })
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
@@ -314,6 +326,7 @@ require('lazy').setup({
 
       -- Document existing key chains
       spec = {
+        { '<cmd>wincmd h<cr>', 'move cursor left one window' },
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
@@ -333,10 +346,10 @@ require('lazy').setup({
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
   {
-     'goolord/alpha-nvim',
-     config = function()
+    'goolord/alpha-nvim',
+    config = function()
       local dashboard = require 'alpha.themes.dashboard'
-        dashboard.section.buttons.val = {
+      dashboard.section.buttons.val = {
         dashboard.button('e', '󰝒  New file', ':ene <BAR> startinsert <CR>'),
         dashboard.button('p', '󰂺 Projects', ':Telescope project <CR>'),
         dashboard.button('q', '󰅚  Quit NVIM', ':qa<CR>'),
