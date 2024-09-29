@@ -619,7 +619,7 @@ require('lazy').setup({
         --
 
         elixirls = {
-          cmd = {'/root/.elixir-ls/release/language_server.sh'}
+          cmd = {'/home/devuser/.elixir-ls/release/language_server.sh'}
         },
 
         lua_ls = {
