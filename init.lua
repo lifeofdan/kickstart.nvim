@@ -332,6 +332,19 @@ require('lazy').setup({
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
+  {
+     'goolord/alpha-nvim',
+     config = function()
+      local dashboard = require 'alpha.themes.dashboard'
+        dashboard.section.buttons.val = {
+        dashboard.button('e', '󰝒  New file', ':ene <BAR> startinsert <CR>'),
+        dashboard.button('p', '󰂺 Projects', ':Telescope project <CR>'),
+        dashboard.button('q', '󰅚  Quit NVIM', ':qa<CR>'),
+      }
+      require('alpha').setup(require('alpha.themes.dashboard').config)
+    end,
+  },
+
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
