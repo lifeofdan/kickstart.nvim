@@ -352,6 +352,11 @@ require('lazy').setup({
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
+      { 'nvim-telescope/telescope-project.nvim' },
+      {
+        'nvim-telescope/telescope-file-browser.nvim',
+        dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+      },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
@@ -619,7 +624,7 @@ require('lazy').setup({
         --
 
         elixirls = {
-          cmd = {'/home/devuser/.elixir-ls/release/language_server.sh'}
+          cmd = { '/home/devuser/.elixir-ls/release/language_server.sh' },
         },
 
         lua_ls = {
